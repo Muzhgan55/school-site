@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Student Profile</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="profile-container">
+  <img src="amina.jpeg" alt="Amina's Photo" class="profile-pic">
+  <div class="profile-info">
+    <h2>Amina Khan</h2>
+    <p>Age: 16</p>
+    <p>Grade: 11</p>
+    <p id="status">Status: Active</p>
+  </div>
+</div>
+
+    <div class="contact-buttons">
+      <button id="showEmailBtn">Show Email</button>
+      <button id="showPhoneBtn">Show Phone</button>
+      <button id="hideInfoBtn">Hide Contact Info</button>
+    </div>
+
+    <p id="contactInfo"></p>
+
+    <div class="status-update">
+      <input type="text" id="statusInput" placeholder="Enter status (Active/Suspended)">
+      <button id="updateStatusBtn">Update Status</button>
+    </div>
+  </section>
+
+  <script>
+    const contactInfo = document.getElementById("contactInfo");
+    const showEmailBtn = document.getElementById("showEmailBtn");
+    const showPhoneBtn = document.getElementById("showPhoneBtn");
+    const hideInfoBtn = document.getElementById("hideInfoBtn");
+    const statusText = document.getElementById("status");
+    const statusInput = document.getElementById("statusInput");
+    const updateStatusBtn = document.getElementById("updateStatusBtn");
+
+    showEmailBtn.addEventListener("click", () => {
+      contactInfo.textContent = "Email: amina@example.com";
+    });
+
+    showPhoneBtn.addEventListener("click", () => {
+      contactInfo.textContent = "Phone: +123 456 789";
+    });
+
+    hideInfoBtn.addEventListener("click", () => {
+      contactInfo.textContent = "";
+    });
+
+    updateStatusBtn.addEventListener("click", () => {
+      let newStatus = statusInput.value;
+      if (newStatus) {
+        statusText.innerHTML = "Status: " + newStatus;
+      } else {
+        alert("Please enter a status!");
+      }
+    });
+  </script>
+</body>
+</html>

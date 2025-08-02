@@ -1,0 +1,194 @@
+:root {
+  --bg-color: #f5fff5;
+  --heading-color: #2e7d32;
+  --text-color: #333;
+  --accent-color: #ffcc00;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.site-header {
+  background: var(--heading-color);
+  color: white;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.hero {
+  background: url('school.jpeg') center/cover no-repeat;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: white;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.enroll-btn {
+  background-color: var(--accent-color);
+  color: black;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.enroll-btn:hover {
+  background-color: #e6b800;
+}
+
+button {
+  background: var(--accent-color);
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+.contact-buttons, 
+.status-update {
+  text-align: center;    
+  margin-top: 20px;      
+}
+
+
+.contact-buttons button,
+.status-update button {
+  margin: 5px; 
+}
+
+button:hover {
+  background: #e6b800;
+}
+
+
+.profile-container {
+  display: flex;             
+  align-items: center;        
+  gap: 20px;                  
+  background: white;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.profile-pic {
+  width: 150px;              
+  height: 150px;
+  object-fit: cover;         
+  border-radius: 50%;       
+  border: 3px solid var(--accent-color);
+}
+
+
+.profile-info h2 {
+  color: var(--heading-color);
+  margin-bottom: 10px;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+
+input, textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.course-card {
+  background: white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.about {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.about h2 {
+  color: var(--heading-color);
+  margin-bottom: 10px;
+}
+
+
+.site-footer {
+  background-color: var(--heading-color);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .nav-links li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .hero-content h2 {
+    font-size: 2rem;
+  }
+}

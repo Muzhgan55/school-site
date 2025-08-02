@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Available Courses</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="courseList"></section>
+
+  <div class="add-course">
+    <input type="text" id="courseInput" placeholder="Add new course">
+    <button id="addCourseBtn">Add Course</button>
+  </div>
+
+  <script>
+    const courseList = document.getElementById("courseList");
+    const addCourseBtn = document.getElementById("addCourseBtn");
+    const courseInput = document.getElementById("courseInput");
+
+    let courses = [
+      { name: "Math", details: "Grade 10 - Algebra", grade: 10 },
+      { name: "Science", details: "Grade 11 - Physics", grade: 11 },
+      { name: "English", details: "Grade 10 - Literature", grade: 10 }
+    ];
+
+    function renderCourses() {
+      courseList.innerHTML = "";
+      for (let course of courses) {
+        const div = document.createElement("div");
+        div.className = "course-card";
+        div.innerHTML = `
+          <h3>${course.name}</h3>
+          <button class="detailsBtn" data-details="${course.details}">Show Course Details</button>
+          <p class="course-details"></p>
+        `;
+        courseList.appendChild(div);
+
+        div.querySelector(".detailsBtn").addEventListener("click", (e) => {
+          div.querySelector(".course-details").textContent = e.target.dataset.details;
+        });
+      }
+    }
+
+    addCourseBtn.addEventListener("click", () => {
+      let newCourse = courseInput.value;
+      if (newCourse) {
+        courses.push({ name: newCourse, details: "Details coming soon!", grade: 10 });
+        renderCourses();
+        courseInput.value = "";
+      } else {
+        alert("Please enter a course name!");
+      }
+    });
+
+    renderCourses();
+  </script>
+</body>
+</html>
