@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
+  <title>Contact Us - Sunrise Academy</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header class="site-header">
     <h1>Contact Us</h1>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="profile.html">Student Profile</a></li>
         <li><a href="courses.html">Courses</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <form id="contactForm">
-    <input type="text" id="name" placeholder="Your Name">
-    <input type="email" id="email" placeholder="Your Email">
-    <textarea id="message" placeholder="Your Message"></textarea>
-    <button type="button" id="sendBtn">Send Message</button>
-  </form>
+  <section class="contact-wrapper">
+    <h2>Get in Touch</h2>
+    <p>If you have questions, suggestions, or need support, feel free to reach out to us!</p>
+
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Sunrise Academy</p>
+  </footer>
 
   <script>
-    const sendBtn = document.getElementById("sendBtn");
-
-    sendBtn.addEventListener("click", () => {
-      let name = document.getElementById("name").value;
-      let email = document.getElementById("email").value;
-      let message = document.getElementById("message").value;
-
-      if (name && email && message) {
-        alert("Message sent! Thank you, " + name);
-        document.getElementById("contactForm").reset();
-      } else {
-        alert("Please fill in all fields.");
-      }
+    document.getElementById("contactForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      if (name) alert(`Message sent! Thank you, ${name}.`);
+      e.target.reset();
     });
   </script>
 </body>
+
 </html>

@@ -1,39 +1,91 @@
+/* ==========================
+   Root Variables
+========================== */
 :root {
-  --bg-color: #f5fff5;
-  --heading-color: #2e7d32;
-  --text-color: #333;
+  --primary-color: #2e7d32;
+  --secondary-color: #28a745;
   --accent-color: #ffcc00;
+  --bg-color: #f5fff5;
+  --text-color: #333;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+}
+
+/* General card hover effect for all section cards */
+.section-card,
+.course-card,
+.event-card,
+.profile-container {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-card:hover,
+.course-card:hover,
+.event-card:hover,
+.profile-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================
+   Global Styles
+========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
-  margin: 0;
-  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
 }
 
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================
+   Header / Navigation
+========================== */
 .site-header {
-  background: var(--heading-color);
+  background: var(--primary-color);
   color: white;
-  padding: 20px;
-  text-align: left;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.site-header h1 {
+  font-size: 1.8rem;
 }
 
 .nav-links {
-  list-style: none;
-  padding: 0;
-}
-
-.nav-links li {
-  display: inline;
-  margin: 0 15px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-links a {
-  text-decoration: none;
   color: white;
   font-weight: bold;
 }
@@ -42,153 +94,657 @@ body {
   color: var(--accent-color);
 }
 
+/* ==========================
+   Hero Section
+========================== */
 .hero {
-  background: url('school.jpeg') center/cover no-repeat;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(rgba(181, 230, 183, 0.6), rgba(129, 199, 132, 0.6)),
+    url('images/school.png') no-repeat center center;
+  background-size: cover;
+  padding: 150px 20px;
+  margin-top: 1.5rem;
+  border-radius: 15px;
   text-align: center;
-  padding: 20px;
   color: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .hero-content h2 {
-  font-size: 3rem;
+  font-size: 2.2rem;
   margin-bottom: 15px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
 }
 
-.enroll-btn {
-  background-color: var(--accent-color);
-  color: black;
-  padding: 12px 24px;
+.hero-content .enroll-btn {
+  padding: 12px 25px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: bold;
-  border: none;
-  border-radius: 5px;
+  color: #2e7d32;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.enroll-btn:hover {
-  background-color: #e6b800;
-}
-
-button {
-  background: var(--accent-color);
-  color: black;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-
-.contact-buttons, 
-.status-update {
-  text-align: center;    
-  margin-top: 20px;      
-}
-
-
-.contact-buttons button,
-.status-update button {
-  margin: 5px; 
-}
-
-button:hover {
+.hero-content .enroll-btn:hover {
   background: #e6b800;
+  transform: scale(1.05);
 }
 
+/* General Section Card */
+.section-card {
+  background: #e3f2fd;
+  /* pastel base */
+  border-radius: 15px;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 900px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-.profile-container {
-  display: flex;             
-  align-items: center;        
-  gap: 20px;                  
+.section-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(83, 116, 84, 0.12);
+}
+
+/* Headings */
+.section-card h2,
+.section-card h3 {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.add-course.section-card {
+  max-width: 400px;
+  /* keep it like a card */
+  text-align: center;
+  /* center the content inside */
+  margin: 30px auto;
+  /* THIS centers the box itself */
+}
+
+/* Announcements */
+.announcements ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.announcements ul li {
   background: white;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
+  margin: 10px auto;
+  padding: 12px 18px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  font-size: 1rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 3px 8px rgba(127, 212, 138, 0.05);
+  transition: transform 0.2s ease;
 }
 
+.announcements ul li:hover {
+  transform: translateX(5px);
+}
+
+/* Icon colors */
+.announcements ul li i.fa-calendar-alt {
+  color: #ff7043;
+}
+
+/* orange */
+.announcements ul li i.fa-users {
+  color: #42a5f5;
+}
+
+/* blue */
+.announcements ul li i.fa-flask {
+  color: #ab47bc;
+}
+
+/* purple */
+.announcements h2 i {
+  color: #2e7d32;
+}
+
+/* main heading icon */
+
+/* Subscribe box */
+.subscribe-box {
+  background: #e8f5e9;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+/* About section with a light tint */
+.about {
+  background: #e3f2fd;
+  /* soft light blue */
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.about h2 i {
+  color: #1565c0;
+}
+
+/* deep blue icon */
+
+.about p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+
+/* Profile Page Styles */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
 
 .profile-pic {
-  width: 150px;              
-  height: 150px;
-  object-fit: cover;         
-  border-radius: 50%;       
-  border: 3px solid var(--accent-color);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 4px solid #2e7d32;
+  /* academy green */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-
 .profile-info h2 {
-  color: var(--heading-color);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  color: #2e7d32;
+  font-size: 1.6rem;
 }
 
 .profile-info p {
-  margin: 5px 0;
+  margin: 4px 0;
   font-size: 1rem;
+  color: #444;
 }
 
-
-form {
+/* Contact buttons */
+.contact-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  max-width: 400px;
-  margin: auto;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px 0;
+  flex-wrap: wrap;
 }
 
-input, textarea {
-  padding: 10px;
+.contact-buttons button {
+  padding: 8px 14px;
+  border: none;
   border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.contact-buttons button:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+#showEmailBtn {
+  background: #007bff;
+  color: #fff;
+}
+
+#showPhoneBtn {
+  background: #17a2b8;
+  color: #fff;
+}
+
+#hideInfoBtn {
+  background: #6c757d;
+  color: #fff;
+}
+
+/* Status update */
+.status-update {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.status-update input {
+  padding: 8px;
   border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+}
+
+.status-update button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #28a745;
+  color: white;
+  margin-left: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.status-update button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Highlight Labels */
+.bio strong {
+  color: #2e7d32;
+  /* Sunrise Green */
+  font-weight: bold;
+}
+
+/* Bio section */
+.bio {
+  margin-top: 20px;
+  padding: 15px;
+  text-align: left;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  background: #f9f9f9;
+  border-left: 4px solid #2e7d32;
+  border-radius: 8px;
+}
+
+/* ==========================
+   Courses Page
+========================== */
+#filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+#filters label {
+  font-weight: bold;
+}
+
+#courseList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 20px;
 }
 
 .course-card {
-  background: white;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.about {
-  padding: 50px 20px;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 20px;
   text-align: center;
+  box-shadow: 0 4px 10px var(--card-shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.about h2 {
-  color: var(--heading-color);
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.course-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
   margin-bottom: 10px;
 }
 
-
-.site-footer {
-  background-color: var(--heading-color);
-  color: white;
+.add-course {
   text-align: center;
-  padding: 15px;
-  margin-top: 20px;
+  margin: 30px 0;
 }
 
+.add-course input {
+  padding: 10px;
+  width: 200px;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+}
+
+/* Courses Page Buttons */
+.course-card button {
+  padding: 8px 14px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.3s ease;
+}
+
+/* Show Details Button */
+.course-card .detailsBtn {
+  background: #007bff;
+  color: #fff;
+}
+
+.course-card .detailsBtn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Enroll Button */
+.course-card .enrollBtn {
+  background: #28a745;
+  color: #fff;
+}
+
+.course-card .enrollBtn:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+
+.add-course button {
+  padding: 10px 15px;
+  margin-left: 5px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--secondary-color);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background var(--transition);
+}
+
+.add-course button:hover {
+  background: #218838;
+}
+
+/* Events Section */
+.events.section-card {
+  background: #f0fdf4;
+  /* light green background */
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.events.section-card h2 {
+  color: #2e7d32;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.event-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.event-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  flex: 1 1 280px;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.2);
+}
+
+.event-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.event-card h3 {
+  color: #2e7d32;
+  margin: 10px 0;
+}
+
+.event-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.contact-wrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: var(--card-bg);
+  /* use your current card background */
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 10px var(--card-shadow);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card Hover Effect */
+.contact-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contact-wrapper h2 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+.contact-wrapper p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* Form inside the contact card */
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contactForm input,
+#contactForm textarea {
+  padding: 12px;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input hover/focus */
+#contactForm input:hover,
+#contactForm textarea:hover,
+#contactForm input:focus,
+#contactForm textarea:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 5px rgba(46, 125, 50, 0.15);
+  outline: none;
+}
+
+/* Button styling */
+#contactForm button {
+  background: var(--secondary-color);
+  /* your current button color */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Button hover */
+#contactForm button:hover {
+  background: #218838;
+  /* darker green for hover */
+  transform: scale(1.05);
+  /* slight zoom effect */
+}
+
+/* ==========================
+   Events Page
+========================== */
+.events-wrapper {
+  max-width: var(--max-width);
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.event-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px var(--card-shadow);
+  margin-bottom: 20px;
+}
+
+.event-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+/* ==========================
+   Footer
+========================== */
+.site-footer {
+  background: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.site-footer a {
+  color: white;
+  margin: 0 5px;
+}
+
+.site-footer a:hover {
+  color: var(--accent-color);
+}
+
+/* ==========================
+   Responsive
+========================== */
 @media (max-width: 768px) {
-  .nav-links li {
-    display: block;
-    margin: 10px 0;
+  .site-header {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .hero-content h2 {
-    font-size: 2rem;
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Show hamburger on small screens */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    background: var(--primary-color);
+    position: absolute;
+    top: 70px;
+    /* below header */
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    color: white;
+    font-weight: bold;
+    text-align: center;
   }
 }

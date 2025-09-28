@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Profile</title>
+  <title>Student Profile - Sunrise Academy</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <!-- Header -->
   <header class="site-header">
     <h1>Student Profile</h1>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
+        <li><a href="profile.html">Student Profile</a></li>
         <li><a href="courses.html">Courses</a></li>
+        <li><a href="events.html">Events</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="profile-container">
-  <img src="amina.jpeg" alt="Amina's Photo" class="profile-pic">
-  <div class="profile-info">
-    <h2>Amina Khan</h2>
-    <p>Age: 16</p>
-    <p>Grade: 11</p>
-    <p id="status">Status: Active</p>
-  </div>
-</div>
+  <!-- Profile Section -->
+  <section class="profile-container section-card">
+    <img src="images/amina.jpeg" alt="Amina's Photo" class="profile-pic">
 
+    <div class="profile-info">
+      <h2>Amina Khan</h2>
+      <p><strong>Age:</strong> 16</p>
+      <p><strong>Grade:</strong> 11</p>
+      <p id="status"><strong>Status:</strong> Active</p>
+    </div>
+
+    <!-- Contact Buttons -->
     <div class="contact-buttons">
       <button id="showEmailBtn">Show Email</button>
       <button id="showPhoneBtn">Show Phone</button>
@@ -36,12 +43,30 @@
 
     <p id="contactInfo"></p>
 
+    <!-- Status Update -->
     <div class="status-update">
       <input type="text" id="statusInput" placeholder="Enter status (Active/Suspended)">
       <button id="updateStatusBtn">Update Status</button>
     </div>
+
+    <!-- Bio -->
+    <div class="bio">
+      <p><strong>Achievements:</strong> Honor Roll, Science Fair Winner 2024</p></div>
+      <div class="bio">
+        <p><strong>Bio:</strong> Amina is a dedicated student with a deep passion for science and literature.
+        She enjoys conducting experiments, exploring new ideas, and writing short stories in her free time.
+        Amina actively participates in school clubs and community projects, always eager to contribute and
+        learn from others. With her strong academic performance and creative mindset, she aims to pursue
+        a career in research while continuing to inspire her peers through leadership and collaboration.</p>
+      </div>
   </section>
 
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Sunrise Academy</p>
+  </footer>
+
+  <!-- Profile Script -->
   <script>
     const contactInfo = document.getElementById("contactInfo");
     const showEmailBtn = document.getElementById("showEmailBtn");
@@ -64,13 +89,20 @@
     });
 
     updateStatusBtn.addEventListener("click", () => {
-      let newStatus = statusInput.value;
-      if (newStatus) {
-        statusText.innerHTML = "Status: " + newStatus;
-      } else {
+      let newStatus = statusInput.value.trim();
+      if (!newStatus) {
         alert("Please enter a status!");
+        return;
       }
+      const validStatuses = ["Active", "Suspended"];
+      if (!validStatuses.includes(newStatus)) {
+        alert("Status must be 'Active' or 'Suspended'");
+        return;
+      }
+      statusText.textContent = "Status: " + newStatus;
+      statusInput.value = "";
     });
   </script>
 </body>
+
 </html>

@@ -1,71 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Courses</title>
+  <title>Courses - Sunrise Academy</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header class="site-header">
-    <h1>Available Courses</h1>
+    <h1>Courses</h1>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="profile.html">Student Profile</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="events.html">Events</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="courseList"></section>
+  <!-- Filter Section -->
+  <section id="filters" class="section-card">
+    <label for="gradeFilter">Filter by Grade:</label>
+    <select id="gradeFilter">
+      <option value="all">All</option>
+      <option value="9">Grade 9</option>
+      <option value="10">Grade 10</option>
+      <option value="11">Grade 11</option>
+      <option value="12">Grade 12</option>
+    </select>
+  </section>
 
-  <div class="add-course">
-    <input type="text" id="courseInput" placeholder="Add new course">
+  <!-- Courses Grid -->
+  <section id="courseList" class="courses-grid"></section>
+
+  <!-- Add Course -->
+  <section class="add-course section-card">
+    <input type="text" id="courseInput" placeholder="New Course Name">
     <button id="addCourseBtn">Add Course</button>
-  </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Sunrise Academy</p>
+  </footer>
 
   <script>
     const courseList = document.getElementById("courseList");
     const addCourseBtn = document.getElementById("addCourseBtn");
     const courseInput = document.getElementById("courseInput");
+    const gradeFilter = document.getElementById("gradeFilter");
 
     let courses = [
-      { name: "Math", details: "Grade 10 - Algebra", grade: 10 },
-      { name: "Science", details: "Grade 11 - Physics", grade: 11 },
-      { name: "English", details: "Grade 10 - Literature", grade: 10 }
+      { name: "Math", details: "Grade 10 - Algebra", grade: 10, img: "images/Math.png", bookLink: "#" },
+      { name: "Science", details: "Grade 11 - Physics", grade: 11, img: "images/Science.png", bookLink: "#" },
+      { name: "English", details: "Grade 10 - Literature", grade: 10, img: "images/English.png", bookLink: "#" }
     ];
 
-    function renderCourses() {
+    function renderCourses(filterGrade = "all") {
       courseList.innerHTML = "";
-      for (let course of courses) {
+      const filteredCourses = courses.filter(c => filterGrade === "all" || c.grade == filterGrade);
+
+      filteredCourses.forEach(course => {
         const div = document.createElement("div");
         div.className = "course-card";
         div.innerHTML = `
+          <a href="${course.bookLink}" target="_blank">
+            <img src="${course.img}" alt="${course.name}">
+          </a>
           <h3>${course.name}</h3>
-          <button class="detailsBtn" data-details="${course.details}">Show Course Details</button>
+          <p><strong>Grade:</strong> ${course.grade}</p>
+          <button class="detailsBtn">Show Course Details</button>
           <p class="course-details"></p>
+          <button class="enrollBtn">Enroll</button>
         `;
         courseList.appendChild(div);
 
-        div.querySelector(".detailsBtn").addEventListener("click", (e) => {
-          div.querySelector(".course-details").textContent = e.target.dataset.details;
+        const detailsBtn = div.querySelector(".detailsBtn");
+        const detailsText = div.querySelector(".course-details");
+        detailsBtn.addEventListener("click", () => {
+          if (detailsText.textContent === "") {
+            detailsText.textContent = course.details;
+            detailsBtn.textContent = "Hide Course Details";
+          } else {
+            detailsText.textContent = "";
+            detailsBtn.textContent = "Show Course Details";
+          }
         });
-      }
+
+        const enrollBtn = div.querySelector(".enrollBtn");
+        enrollBtn.addEventListener("click", () => {
+          alert(`You have enrolled in ${course.name}!`);
+        });
+      });
     }
 
     addCourseBtn.addEventListener("click", () => {
-      let newCourse = courseInput.value;
-      if (newCourse) {
-        courses.push({ name: newCourse, details: "Details coming soon!", grade: 10 });
-        renderCourses();
-        courseInput.value = "";
-      } else {
+      const newCourseName = courseInput.value.trim();
+      if (!newCourseName) {
         alert("Please enter a course name!");
+        return;
       }
+
+      const duplicate = courses.some(c => c.name.toLowerCase() === newCourseName.toLowerCase());
+      if (duplicate) {
+        alert("This course already exists!");
+        return;
+      }
+
+      courses.push({
+        name: newCourseName,
+        details: "Details coming soon!",
+        grade: parseInt(gradeFilter.value) || 10,
+        img: "images/NewCourse.png",
+        bookLink: "#"
+      });
+
+      renderCourses(gradeFilter.value);
+      courseInput.value = "";
+    });
+
+    gradeFilter.addEventListener("change", () => {
+      renderCourses(gradeFilter.value);
     });
 
     renderCourses();
   </script>
 </body>
+
 </html>
